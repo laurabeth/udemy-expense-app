@@ -2,13 +2,17 @@ import "normalize.css";
 import "./styles/styles.scss";
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 
 const ExpenseDashboardPage = () => <div> This is the dashboard component </div>;
 const AddExpensePage = () => <div> This is the add expense component </div>;
 const EditExpensePage = () => <div> This is the edit component </div>;
 const HelpPage = () => <div> This is the help component </div>;
-const NotFoundPage = () => <div> 404 </div>;
+const NotFoundPage = () => (
+  <div>
+    404 - <Link to="/"> Return to Expensify Home</Link>
+  </div>
+);
 
 const routes = (
   <BrowserRouter>
@@ -22,4 +26,5 @@ const routes = (
   </BrowserRouter>
 );
 
+// eslint-disable-next-line no-undef
 ReactDOM.render(routes, document.getElementById("app"));
