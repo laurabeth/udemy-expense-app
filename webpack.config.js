@@ -7,7 +7,7 @@ module.exports = {
     port: 1013,
   },
   devtool: "cheap-module-eval-source-map",
-  entry: "./src/app.js",
+  entry: "./src/playground/redux-101.js",
   mode: "development",
   module: {
     rules: [
