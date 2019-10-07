@@ -7,7 +7,7 @@ module.exports = {
     port: 1013,
   },
   devtool: "cheap-module-eval-source-map",
-  entry: "./src/playground/expensify-redux.js",
+  entry: "./src/app.js",
   mode: "development",
   module: {
     rules: [
