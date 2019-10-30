@@ -11,16 +11,13 @@ import { DateTime } from "luxon";
 const store = useStore();
 const { addExpense } = actions;
 const now = Date.now();
-const minusThirteen = DateTime.fromMillis(now)
-  .minus({ days: 13 })
-  .toMillis();
-
-console.log(minusThirteen);
 
 store.dispatch(
   addExpense({
     amount: 3500,
-    createdOn: minusThirteen,
+    createdOn: DateTime.fromMillis(now)
+      .minus({ days: 13 })
+      .toMillis(),
     description: "Water Bill",
     note: "sewage included",
   }),
