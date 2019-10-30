@@ -5,17 +5,31 @@ export const setTextFilter = (text = "") => {
   };
 };
 
-export const sortByDate = () => {
+export const sortByDateAscending = () => {
   return {
-    sortBy: "date",
-    type: "SORT_BY_DATE",
+    sortBy: "date_asc",
+    type: "SORT_BY_DATE_ASC",
   };
 };
 
-export const sortByAmount = () => {
+export const sortByDateDescending = () => {
   return {
-    sortBy: "amount",
-    type: "SORT_BY_AMOUNT",
+    sortBy: "date_desc",
+    type: "SORT_BY_DATE_DESC",
+  };
+};
+
+export const sortByAmountAscending = () => {
+  return {
+    sortBy: "amount_asc",
+    type: "SORT_BY_AMOUNT_ASC",
+  };
+};
+
+export const sortByAmountDescending = () => {
+  return {
+    sortBy: "amount_desc",
+    type: "SORT_BY_AMOUNT_DESC",
   };
 };
 

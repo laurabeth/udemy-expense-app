@@ -6,34 +6,45 @@ import { Provider } from "react-redux";
 import AppRouter from "./routes/AppRouter";
 import useStore from "./store";
 import * as actions from "./actions";
-import { getVisibleExpenses } from "./selectors";
+import { DateTime } from "luxon";
 
 const store = useStore();
-const { addExpense, setTextFilter } = actions;
+const { addExpense } = actions;
+const now = Date.now();
+const minusThirteen = DateTime.fromMillis(now)
+  .minus({ days: 13 })
+  .toMillis();
+
+console.log(minusThirteen);
 
 store.dispatch(
   addExpense({
     amount: 3500,
-    createdOn: Date.now(),
-    description: "Water",
+    createdOn: minusThirteen,
+    description: "Water Bill",
     note: "sewage included",
   }),
 );
 store.dispatch(
   addExpense({
     amount: 6000,
-    createdOn: Date.now(),
+    createdOn: DateTime.fromMillis(now)
+      .minus({ days: 2 })
+      .toMillis(),
     description: "Gas Bill",
     note: "wtf we have gas?",
   }),
 );
-store.dispatch(setTextFilter("Bill"));
-
-console.log(getVisibleExpenses(store.getState().expenses, store.getState().filters));
-
-setTimeout(() => {
-  store.dispatch(setTextFilter("Water"));
-}, 3000);
+store.dispatch(
+  addExpense({
+    amount: 169500,
+    createdOn: DateTime.fromMillis(now)
+      .plus({ days: 23 })
+      .toMillis(),
+    description: "Mortgage Payment",
+    note: "omg house!",
+  }),
+);
 
 const jsx = (
   <Provider store={store}>
