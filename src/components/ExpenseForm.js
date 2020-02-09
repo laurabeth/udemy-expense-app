@@ -1,10 +1,17 @@
 import React from "react";
+import moment from "moment";
+import "react-dates/initialize";
+import { SingleDatePicker } from "react-dates";
+import "react-dates/lib/css/_datepicker.css";
+
 const { useState } = React;
 
 const ExpenseForm = () => {
   const [description, setDescription] = useState({ value: "" });
   const [amount, setAmount] = useState({ value: 0 });
   const [note, setNote] = useState({ value: "" });
+  const [createdOn, setCreatedOn] = useState(moment());
+  const [calendarFocused, setCalendarFocused] = useState(false);
 
   const onDescriptionChange = (event) => {
     setDescription({ value: event.target.value });
@@ -12,7 +19,7 @@ const ExpenseForm = () => {
 
   const onAmountChange = (event) => {
     const input = event.target.value;
-    if (input.match(/^\d*(\.\d{0,2})?$/)) {
+    if (!amount || input.match(/^\d{1,}(\.\d{0,2})?$/)) {
       setAmount({ value: input });
     }
   };
@@ -35,6 +42,14 @@ const ExpenseForm = () => {
           placeholder="Amount"
           type="string"
           value={amount.value}
+        />
+        <SingleDatePicker
+          date={createdOn}
+          focused={calendarFocused}
+          isOutsideRange={() => false}
+          numberOfMonths={1}
+          onDateChange={(date) => setCreatedOn(date)}
+          onFocusChange={({ focused }) => setCalendarFocused(focused)}
         />
         <textarea
           onChange={onNoteChange}
