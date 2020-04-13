@@ -24,6 +24,12 @@ const ExpenseForm = () => {
     }
   };
 
+  const onDateChange = (date) => {
+    if (date) {
+      setCreatedOn(date);
+    }
+  };
+
   const onNoteChange = (event) => {
     setNote({ value: event.target.value });
   };
@@ -48,7 +54,7 @@ const ExpenseForm = () => {
           focused={calendarFocused}
           isOutsideRange={() => false}
           numberOfMonths={1}
-          onDateChange={(date) => setCreatedOn(date)}
+          onDateChange={onDateChange}
           onFocusChange={({ focused }) => setCalendarFocused(focused)}
         />
         <textarea
