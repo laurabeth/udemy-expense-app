@@ -6,21 +6,22 @@ import "react-dates/lib/css/_datepicker.css";
 
 const { useState } = React;
 
-const ExpenseForm = () => {
-  const [description, setDescription] = useState({ value: "" });
-  const [amount, setAmount] = useState({ value: 0 });
-  const [note, setNote] = useState({ value: "" });
-  const [createdOn, setCreatedOn] = useState(moment());
+const ExpenseForm = ({ submitExpense }) => {
+  const [amount, setAmount] = useState("");
   const [calendarFocused, setCalendarFocused] = useState(false);
+  const [createdOn, setCreatedOn] = useState(moment());
+  const [description, setDescription] = useState("");
+  const [error, setError] = useState("");
+  const [note, setNote] = useState("");
 
   const onDescriptionChange = (event) => {
-    setDescription({ value: event.target.value });
+    setDescription(event.target.value);
   };
 
   const onAmountChange = (event) => {
     const input = event.target.value;
-    if (!amount || input.match(/^\d{1,}(\.\d{0,2})?$/)) {
-      setAmount({ value: input });
+    if (input.length === 0 || input.match(/^\d{1,}(\.\d{0,2})?$/)) {
+      setAmount(input);
     }
   };
 
@@ -31,23 +32,40 @@ const ExpenseForm = () => {
   };
 
   const onNoteChange = (event) => {
-    setNote({ value: event.target.value });
+    setNote(event.target.value);
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    if (!description || !amount) {
+      setError("Please provide description and amount");
+    } else {
+      setError("");
+      submitExpense({
+        amount: parseFloat(amount, 10) * 100,
+        createdOn: createdOn.valueOf(),
+        description,
+        note,
+      });
+    }
   };
 
   return (
     <div>
-      <form>
+      <form onSubmit={onSubmit}>
+        {error && <p>{error}</p>}
         <input
           onChange={onDescriptionChange}
           placeholder="Description"
           type="text"
-          value={description.value}
+          value={description}
         />
         <input
           onChange={onAmountChange}
           placeholder="Amount"
           type="string"
-          value={amount.value}
+          value={amount}
         />
         <SingleDatePicker
           date={createdOn}
@@ -60,7 +78,7 @@ const ExpenseForm = () => {
         <textarea
           onChange={onNoteChange}
           placeholder="Add a note for your expense (optional)"
-          value={note.value}
+          value={note}
         ></textarea>
         <button>Add Expense</button>
       </form>
