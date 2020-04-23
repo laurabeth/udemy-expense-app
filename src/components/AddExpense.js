@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 import ExpenseForm from "./ExpenseForm";
 import { addExpense } from "../actions/expenses";
 
-const AddExpense = (props) => {
+const AddExpense = ({ dispatch, history }) => {
   const submitExpense = (expense) => {
-    props.dispatch(addExpense(expense));
-    props.history.push("/");
+    dispatch(addExpense(expense));
+    history.push("/");
   };
 
   return (

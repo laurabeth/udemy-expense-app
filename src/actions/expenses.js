@@ -5,16 +5,20 @@ export const addExpense = ({
   createdOn = 0,
   description = "",
   note = "",
-} = {}) => ({
-  expense: {
-    amount: amount,
-    createdOn: createdOn,
-    description: description,
-    id: uuid(),
-    note: note,
-  },
-  type: "ADD_EXPENSE",
-});
+} = {}) => {
+  const id = uuid();
+
+  return {
+    expense: {
+      amount: amount,
+      createdOn: createdOn,
+      description: description,
+      id,
+      note: note,
+    },
+    type: "ADD_EXPENSE",
+  };
+};
 
 export const removeExpense = ({ id } = {}) => {
   return {

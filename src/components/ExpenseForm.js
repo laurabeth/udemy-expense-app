@@ -6,13 +6,15 @@ import "react-dates/lib/css/_datepicker.css";
 
 const { useState } = React;
 
-const ExpenseForm = ({ submitExpense }) => {
-  const [amount, setAmount] = useState("");
+const ExpenseForm = ({ expense, submitExpense }) => {
+  const [amount, setAmount] = useState(expense ? (expense.amount / 100).toString() : "");
   const [calendarFocused, setCalendarFocused] = useState(false);
-  const [createdOn, setCreatedOn] = useState(moment());
-  const [description, setDescription] = useState("");
+  const [createdOn, setCreatedOn] = useState(
+    expense ? moment(expense.createdOn) : moment(),
+  );
+  const [description, setDescription] = useState(expense ? expense.description : "");
   const [error, setError] = useState("");
-  const [note, setNote] = useState("");
+  const [note, setNote] = useState(expense ? expense.note : "");
 
   const onDescriptionChange = (event) => {
     setDescription(event.target.value);

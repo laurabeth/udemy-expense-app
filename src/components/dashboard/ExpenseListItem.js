@@ -1,22 +1,18 @@
 import React from "react";
-import { connect } from "react-redux";
-import { removeExpense } from "../../actions";
 import { DateTime } from "luxon";
+import { Link } from "react-router-dom";
 
-const ExpenseListItem = ({ amount, createdOn, description, id, note, ...props }) => {
-  const handleRemoveExpense = () => {
-    props.dispatch(removeExpense({ id }));
-  };
-
+const ExpenseListItem = ({ amount, createdOn, description, id, note }) => {
   return (
     <div>
-      <h3>{description}</h3>
+      <Link to={`/edit/${id}`}>
+        <h3>{description}</h3>
+      </Link>
       <p>Amount: {amount}</p>
       <p>Date: {DateTime.fromMillis(createdOn).toLocaleString()}</p>
       {note && <p>Note: {note}</p>}
-      <button onClick={handleRemoveExpense}>Remove</button>
     </div>
   );
 };
 
-export default connect()(ExpenseListItem);
+export default ExpenseListItem;
