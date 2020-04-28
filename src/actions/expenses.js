@@ -6,14 +6,12 @@ export const addExpense = ({
   description = "",
   note = "",
 } = {}) => {
-  const id = uuid();
-
   return {
     expense: {
       amount: amount,
       createdOn: createdOn,
       description: description,
-      id,
+      id: uuid(),
       note: note,
     },
     type: "ADD_EXPENSE",

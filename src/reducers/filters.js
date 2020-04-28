@@ -2,7 +2,7 @@ import moment from "moment";
 
 const defaultFilters = {
   endDate: moment().endOf("month"),
-  sortBy: "date",
+  sortBy: "date_asc",
   startDate: moment().startOf("month"),
   text: "",
 };
