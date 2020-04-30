@@ -8,7 +8,7 @@ const ExpenseListItem = ({ amount, createdOn, description, id, note }) => {
         <h3>{description}</h3>
       </Link>
       <p>Amount: {amount}</p>
-      <p>Date: {createdOn.format("ddd, MMM, Do YYYY, LT")}</p>
+      <p>Date: {createdOn.format("ddd, MMM Do, YYYY, LT")}</p>
       {note && <p>Note: {note}</p>}
     </div>
   );

@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import { getVisibleExpenses } from "../../selectors";
 import moment from "moment";
-import expensesMock from "../mocks/expenses";
+import expensesMock from "../fixtures/expenses";
 
 const filters = ({
   endDate = undefined,

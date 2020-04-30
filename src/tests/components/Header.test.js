@@ -1,12 +1,11 @@
 /* eslint-disable no-undef */
 import React from "react";
-import ReactShallowRenderer from "react-test-renderer/shallow";
-import { Header } from "../../components";
+import { shallow } from "enzyme";
+import Header from "../../components/Header";
 
 describe("header", () => {
-  it("renders without crashing", () => {
-    const renderer = new ReactShallowRenderer();
-    renderer.render(<Header />);
-    console.log(renderer.getRenderOutput());
+  it("should render correctly", () => {
+    const wrapper = shallow(<Header />);
+    expect(wrapper).toMatchSnapshot();
   });
 });

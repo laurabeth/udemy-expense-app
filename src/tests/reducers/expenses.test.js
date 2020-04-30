@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import { expensesReducer } from "../../reducers";
-import expensesMock from "../mocks/expenses";
+import expensesMock from "../fixtures/expenses";
 
 describe("expenses reducer", () => {
   it("should set default state", () => {
