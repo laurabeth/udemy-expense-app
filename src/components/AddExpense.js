@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import ExpenseForm from "./ExpenseForm";
 import { addExpense } from "../actions/expenses";
 
-const AddExpense = ({ dispatch, history }) => {
+export const AddExpense = ({ history, onSubmit }) => {
   const submitExpense = (expense) => {
-    dispatch(addExpense(expense));
+    onSubmit(expense);
     history.push("/");
   };
 
@@ -17,4 +17,8 @@ const AddExpense = ({ dispatch, history }) => {
   );
 };
 
-export default connect()(AddExpense);
+const mapDispatchToProps = (dispatch) => ({
+  onSubmit: (expense) => dispatch(addExpense(expense)),
+});
+
+export default connect(undefined, mapDispatchToProps)(AddExpense);

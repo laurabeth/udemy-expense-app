@@ -7,7 +7,7 @@
     "build": "webpack",
     "dev-server": "webpack-dev-server",
     "start": "webpack-dev-server --mode development --open --hot",
-    "test": "jest --config=jest.config.json"
+    "test": "jest --config=jest.config.json --watch"
   },
   "dependencies": {
     "@babel/core": "^7.9.0",
