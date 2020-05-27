@@ -64,7 +64,7 @@ describe("expense list filters", () => {
     expect(sortByAmountDescending).toHaveBeenCalled();
   });
 
-  it("should handle date changes", () => {
+  it("should call date changes", () => {
     const startDate = moment(0).add(1, "year");
     const endDate = moment(0)
       .add(1, "year")
