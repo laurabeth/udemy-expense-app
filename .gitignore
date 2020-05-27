@@ -4,5 +4,3 @@
 !.vscode/launch.json
 !.vscode/extensions.json
 node_modules/*
-public/bundle.js*
-public/styles.js*
