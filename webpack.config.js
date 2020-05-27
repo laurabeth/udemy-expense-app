@@ -10,7 +10,7 @@ module.exports = (env) => {
       historyApiFallback: true,
       port: 1013,
     },
-    devtool: isProd ? "source-map" : "cheap-module-eval-source-map",
+    devtool: isProd ? "source-map" : "inline-source-map",
     entry: "./src/app.js",
     mode: "development",
     module: {
@@ -23,11 +23,15 @@ module.exports = (env) => {
         {
           test: /\.s?css$/,
           use: [
+            MiniCssExtractPlugin.loader,
             {
-              loader: MiniCssExtractPlugin.loader,
+              loader: "css-loader",
+              options: { sourceMap: true },
             },
-            "css-loader",
-            "sass-loader",
+            {
+              loader: "sass-loader",
+              options: { sourceMap: true },
+            },
           ],
         },
       ],
