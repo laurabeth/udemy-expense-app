@@ -1,14 +1,24 @@
+/* eslint-disable no-undef */
 import React from "react";
 import { shallow } from "enzyme";
 import { AddExpense } from "../../components/AddExpense";
-import expensesMock from "../fixtures/expenses";
+import expenses from "../fixtures/expenses";
 
-/* eslint-disable no-undef */
+let addExpense, history, wrapper;
+beforeEach(() => {
+  addExpense = jest.fn();
+  history = { push: jest.fn() };
+  wrapper = shallow(<AddExpense addExpense={addExpense} history={history} />);
+});
+
 describe("add expense", () => {
   it("renders", () => {
-    const onSubmit = jest.fn();
-    const history = { push: jest.fn() };
-    const wrapper = shallow(<AddExpense history={history} onSubmit={onSubmit} />);
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should handle addExpense", () => {
+    wrapper.find("ExpenseForm").prop("submitExpense")(expenses[1]);
+    expect(history.push).toHaveBeenLastCalledWith("/");
+    expect(addExpense).toHaveBeenLastCalledWith(expenses[1]);
   });
 });

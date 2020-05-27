@@ -3,13 +3,13 @@ import { connect } from "react-redux";
 import ExpenseForm from "./ExpenseForm";
 import { editExpense, removeExpense } from "../actions";
 
-const EditExpense = ({ dispatch, expense, history }) => {
+export const EditExpense = ({ editExpense, expense, history, removeExpense }) => {
   const submitEdit = (edits) => {
-    dispatch(editExpense(expense.id, edits));
+    editExpense(expense.id, edits);
     history.push("/");
   };
   const handleRemoveExpense = () => {
-    dispatch(removeExpense({ id: expense.id }));
+    removeExpense(expense.id);
     history.push("/");
   };
   return (
@@ -26,4 +26,9 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-export default connect(mapStateToProps)(EditExpense);
+const mapDispatchToProps = (dispatch) => ({
+  editExpense: (id, edits) => dispatch(editExpense(id, edits)),
+  removeExpense: (id) => dispatch(removeExpense({ id })),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditExpense);

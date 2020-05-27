@@ -14,32 +14,39 @@ import {
 
 const { useState } = React;
 
-const ExpenseListFilters = ({ dispatch, filters }) => {
-  const [calendarFocused, setCalendarFocused] = useState("false");
+export const ExpenseListFilters = ({
+  filters,
+  setTextFilter,
+  sortByAmountAscending,
+  sortByAmountDescending,
+  sortByDateAscending,
+  sortByDateDescending,
+}) => {
+  const [calendarFocused, setCalendarFocused] = useState("endDate");
   const handleChangeFilter = (e) => {
-    dispatch(setTextFilter(e.target.value));
+    setTextFilter(e.target.value);
   };
 
   const handleSelectSort = (e) => {
     switch (e.target.value) {
       case "date_asc":
-        dispatch(sortByDateAscending());
+        sortByDateAscending();
         break;
       case "date_desc":
-        dispatch(sortByDateDescending());
+        sortByDateDescending();
         break;
       case "amount_asc":
-        dispatch(sortByAmountAscending());
+        sortByAmountAscending();
         break;
       case "amount_desc":
-        dispatch(sortByAmountDescending());
+        sortByAmountDescending();
         break;
     }
   };
 
   const handleChangeFilterDates = ({ startDate, endDate }) => {
-    dispatch(setStartDate(startDate));
-    dispatch(setEndDate(endDate));
+    setStartDate(startDate);
+    setEndDate(endDate);
   };
 
   return (
@@ -53,7 +60,7 @@ const ExpenseListFilters = ({ dispatch, filters }) => {
       </select>
       <DateRangePicker
         endDate={filters.endDate}
-        endDateId={filters.endDate.toString()}
+        endDateId="endDate"
         focusedInput={calendarFocused}
         isOutsideRange={() => false}
         numberOfMonths={1}
@@ -61,7 +68,7 @@ const ExpenseListFilters = ({ dispatch, filters }) => {
         onFocusChange={(focused) => setCalendarFocused(focused)}
         showClearDates
         startDate={filters.startDate}
-        startDateId={filters.startDate.toString()}
+        startDateId="startDate"
       />
     </div>
   );
@@ -73,4 +80,14 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(ExpenseListFilters);
+const mapDispatchToProps = (dispatch) => ({
+  setEndDate: (endDate) => dispatch(setEndDate(endDate)),
+  setStartDate: (startDate) => dispatch(setStartDate(startDate)),
+  setTextFilter: (text) => dispatch(setTextFilter(text)),
+  sortByAmountAscending: () => dispatch(sortByAmountAscending()),
+  sortByAmountDescending: () => dispatch(sortByAmountDescending()),
+  sortByDateAscending: () => dispatch(sortByDateAscending()),
+  sortByDateDescending: () => dispatch(sortByDateDescending()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ExpenseListFilters);
