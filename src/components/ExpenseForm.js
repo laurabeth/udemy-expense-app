@@ -9,7 +9,7 @@ const ExpenseForm = ({ expense, submitExpense }) => {
   const [amount, setAmount] = useState(expense ? (expense.amount / 100).toString() : "");
   const [calendarFocused, setCalendarFocused] = useState(false);
   const [createdOn, setCreatedOn] = useState(
-    expense ? moment(expense.createdOn) : moment(),
+    expense ? moment(expense.createdOn) : new moment(),
   );
   const [description, setDescription] = useState(expense ? expense.description : "");
   const [error, setError] = useState("");
@@ -45,7 +45,7 @@ const ExpenseForm = ({ expense, submitExpense }) => {
       setError("");
       submitExpense({
         amount: parseFloat(amount, 10) * 100,
-        createdOn: createdOn.valueOf(),
+        createdOn: createdOn,
         description,
         note,
       });

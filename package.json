@@ -4,10 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "webpack",
+    "build:dev": "webpack --env dev",
+    "build:prod": "webpack -p --env prod",
     "dev-server": "webpack-dev-server",
     "start": "webpack-dev-server --mode development --open --hot",
-    "test": "jest --config=jest.config.json --watch"
+    "test": "jest --config=jest.config.json"
   },
   "dependencies": {
     "@babel/core": "^7.9.0",

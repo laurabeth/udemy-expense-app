@@ -16,13 +16,15 @@ const { useState } = React;
 
 export const ExpenseListFilters = ({
   filters,
+  setEndDate,
+  setStartDate,
   setTextFilter,
   sortByAmountAscending,
   sortByAmountDescending,
   sortByDateAscending,
   sortByDateDescending,
 }) => {
-  const [calendarFocused, setCalendarFocused] = useState("endDate");
+  const [calendarFocused, setCalendarFocused] = useState(null);
   const handleChangeFilter = (e) => {
     setTextFilter(e.target.value);
   };
