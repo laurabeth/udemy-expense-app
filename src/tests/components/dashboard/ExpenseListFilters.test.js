@@ -27,11 +27,19 @@ describe("expense list filters", () => {
     const wrapper = renderExpenseListFilters(filters[1]);
     expect(wrapper).toMatchSnapshot();
   });
-  //should handle text change
-  //should sort by date
-  //should sort by amount
-  //should handle date changes
-  //should hanlde date focus changes
+
+  it("should handle text changes", () => {
+    const value = "test filter";
+    const wrapper = renderExpenseListFilters(filters[1]);
+    wrapper.find("input").simulate("change", {
+      event: { target: { value } },
+    });
+    expect(setTextFilter).toHaveBeenLastCalledWith(value);
+  });
+  it("should sort by date", () => {});
+  it("should sort by amount", () => {});
+  it("should handle date changes", () => {});
+  it("should handle date focus changes", () => {});
 });
 
 const renderExpenseListFilters = (f) =>

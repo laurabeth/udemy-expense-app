@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import ExpenseForm from "../../components/ExpenseForm";
-import expensesMock from "../fixtures/expenses";
+import expenses from "../fixtures/expenses";
 
 /* eslint-disable no-undef */
 describe("expense form", () => {
@@ -11,7 +11,7 @@ describe("expense form", () => {
   });
 
   it("renders with provided data", () => {
-    const wrapper = shallow(<ExpenseForm expense={expensesMock[1]} />);
+    const wrapper = shallow(<ExpenseForm expense={expenses[1]} />);
     expect(wrapper).toMatchSnapshot();
   });
 
