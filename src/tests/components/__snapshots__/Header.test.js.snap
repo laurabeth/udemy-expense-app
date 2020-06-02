@@ -21,8 +21,5 @@ exports[`header should render correctly 1`] = `
   >
     Create Expense
   </NavLink>
-  <span>
-     | 
-  </span>
 </header>
 `;
