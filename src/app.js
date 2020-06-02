@@ -14,7 +14,7 @@ const { addExpense } = actions;
 
 store.dispatch(
   addExpense({
-    amount: 3500,
+    amount: 35,
     createdOn: moment().subtract(13, "days"),
     description: "Water Bill",
     note: "sewage included",
@@ -22,7 +22,7 @@ store.dispatch(
 );
 store.dispatch(
   addExpense({
-    amount: 6000,
+    amount: 60,
     createdOn: moment().subtract(2, "days"),
     description: "Gas Bill",
     note: "wtf we have gas?",
@@ -30,7 +30,7 @@ store.dispatch(
 );
 store.dispatch(
   addExpense({
-    amount: 169500,
+    amount: 1695,
     createdOn: moment().add(23, "days"),
     description: "Mortgage Payment",
     note: "omg house!",
