@@ -1,6 +1,6 @@
 import moment from "moment";
 
-const expensesMock = [
+const expenses = [
   {
     amount: 50,
     createdOn: moment(0),
@@ -24,4 +24,4 @@ const expensesMock = [
   },
 ];
 
-export default expensesMock;
+export default expenses;

@@ -2,6 +2,6 @@
 
 exports[`expense banner renders 1`] = `
 <div>
-  Expense Banner
+  Viewing 1 expenses, totaling $1.00
 </div>
 `;

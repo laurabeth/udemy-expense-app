@@ -4,3 +4,4 @@ dist
 *.json
 **/*.snap
 *.config.js
+node_modules

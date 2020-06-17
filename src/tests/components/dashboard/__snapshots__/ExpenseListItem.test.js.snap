@@ -11,7 +11,7 @@ exports[`expense list item renders with data 1`] = `
   </Link>
   <p>
     Amount: 
-    50
+    $0.50
   </p>
   <p>
     Date: 
