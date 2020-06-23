@@ -15,8 +15,6 @@ firebase.initializeApp(firebaseConfig);
 
 const db = firebase.database();
 
-//have changes to data register to console
-
 db.ref("expenses")
   .on("value", (snapshot) => {
     const expenses = [];
@@ -33,50 +31,12 @@ db.ref("expenses")
     console.log("an error occurred", e);
   });
 
-// db.ref("expenses")
-//   .push({
-//     amount: 3500,
-//     createdOn: moment()
-//       .subtract(14, "days")
-//       .format("ddd, MMM Do, YYYY"),
-//     description: "Water bill",
-//     note: "sewage included",
-//   })
-//   .then(() => {
-//     console.log("push succeded");
-//   })
-//   .catch((e) => {
-//     console.log("push failed", e);
-//   });
+//child_removed
+db.ref("expenses").on("child_removed", (snapshot) => {
+  console.log(snapshot.key, snapshot.val());
+});
 
-// db.ref("expenses")
-//   .push({
-//     amount: 6000,
-//     createdOn: moment()
-//       .subtract(2, "days")
-//       .format("ddd, MMM Do, YYYY"),
-//     description: "Gas bill",
-//     note: "wtf we have gas?",
-//   })
-//   .then(() => {
-//     console.log("push succeded");
-//   })
-//   .catch((e) => {
-//     console.log("push failed", e);
-//   });
-
-// db.ref("expenses")
-//   .push({
-//     amount: 169500,
-//     createdOn: moment()
-//       .add(23, "days")
-//       .format("ddd, MMM Do, YYYY"),
-//     description: "Mortgage payment",
-//     note: "omg house!",
-//   })
-//   .then(() => {
-//     console.log("push succeded");
-//   })
-//   .catch((e) => {
-//     console.log("push failed", e);
-//   });
+//child_changed
+db.ref("expenses").on("child_changed", (snapshot) => {
+  console.log(snapshot.key, snapshot.val());
+});
