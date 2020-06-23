@@ -45,7 +45,7 @@ const ExpenseForm = ({ expense, submitExpense }) => {
       setError("");
       submitExpense({
         amount: parseFloat(amount, 10) * 100,
-        createdOn: createdOn,
+        createdOn: createdOn.toString(),
         description,
         note,
       });

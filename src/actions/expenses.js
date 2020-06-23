@@ -1,20 +1,32 @@
-import uuid from "uuid";
+import database from "../firebase/firebase";
 
-export const addExpense = ({
-  amount = 0,
-  createdOn = 0,
-  description = "",
-  note = "",
-} = {}) => {
+// component calls the action generator
+// action generator returns an object
+// component dispatches object
+// redux store changes
+
+export const addExpense = (expense) => {
   return {
-    expense: {
-      amount: amount,
-      createdOn: createdOn,
-      description: description,
-      id: uuid(),
-      note: note,
-    },
+    expense,
     type: "ADD_EXPENSE",
+  };
+};
+
+export const startAddExpense = (data = {}) => {
+  return (dispatch) => {
+    const { amount = 0, createdOn = 0, description = "", note = "" } = data;
+    const expense = { amount, createdOn, description, note };
+    database
+      .ref("expenses")
+      .push(expense)
+      .then((ref) => {
+        dispatch(
+          addExpense({
+            id: ref.key,
+            ...expense,
+          }),
+        );
+      });
   };
 };
 

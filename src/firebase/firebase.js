@@ -1,5 +1,4 @@
 import * as firebase from "firebase";
-// import moment from "moment";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDyjtPskLsiqlI2Turiwy4kKbyKO42fzZo",
@@ -13,30 +12,6 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-const db = firebase.database();
+const database = firebase.database();
 
-db.ref("expenses")
-  .on("value", (snapshot) => {
-    const expenses = [];
-    snapshot.forEach((child) => {
-      expenses.push({
-        id: child.key,
-        ...child.val(),
-      });
-    });
-
-    console.log(expenses);
-  })
-  .catch((e) => {
-    console.log("an error occurred", e);
-  });
-
-//child_removed
-db.ref("expenses").on("child_removed", (snapshot) => {
-  console.log(snapshot.key, snapshot.val());
-});
-
-//child_changed
-db.ref("expenses").on("child_changed", (snapshot) => {
-  console.log(snapshot.key, snapshot.val());
-});
+export { firebase, database as default };
