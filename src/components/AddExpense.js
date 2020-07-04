@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import ExpenseForm from "./ExpenseForm";
-import { startAddExpense } from "../actions/expenses";
+import { addExpenseAsync } from "../actions/expenses";
 
-export const AddExpense = ({ history, startAddExpense }) => {
+export const AddExpense = ({ history, addExpenseAsync }) => {
   const submitExpense = (expense) => {
-    startAddExpense(expense);
+    addExpenseAsync(expense);
     history.push("/");
   };
 
@@ -18,7 +18,7 @@ export const AddExpense = ({ history, startAddExpense }) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  startAddExpense: (expense) => dispatch(startAddExpense(expense)),
+  addExpenseAsync: (expense) => dispatch(addExpenseAsync(expense)),
 });
 
 export default connect(undefined, mapDispatchToProps)(AddExpense);

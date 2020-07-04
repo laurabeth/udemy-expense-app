@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import { addExpense, editExpense, removeExpense } from "../../actions";
 import moment from "moment";
+import expenses from "../fixtures/expenses";
 
 describe("remove expense tests", () => {
   it("should set up remove expense action object", () => {
@@ -22,32 +23,24 @@ describe("edit expense tests", () => {
 
 describe("add expense tests", () => {
   it("should set up add expense action object with provided values", () => {
-    const expenseData = {
-      amount: 4200,
-      createdOn: moment("1/1/2020"),
-      description: "test description",
-      note: "test note",
-    };
-    const action = addExpense(expenseData);
+    const action = addExpense(expenses[2]);
     expect(action).toEqual({
-      expense: {
-        ...expenseData,
-        id: expect.any(String),
-      },
+      expense: expenses[2],
       type: "ADD_EXPENSE",
     });
   });
-  it("should set up add expense action object with default values", () => {
-    const action = addExpense();
-    expect(action).toEqual({
-      expense: {
-        amount: 0,
-        createdOn: 0,
-        description: "",
-        id: expect.any(String),
-        note: "",
-      },
-      type: "ADD_EXPENSE",
-    });
-  });
+
+  // it("should set up add expense action object with default values", () => {
+  //   const action = addExpense();
+  //   expect(action).toEqual({
+  //     expense: {
+  //       amount: 0,
+  //       createdOn: 0,
+  //       description: "",
+  //       id: expect.any(String),
+  //       note: "",
+  //     },
+  //     type: "ADD_EXPENSE",
+  //   });
+  // });
 });

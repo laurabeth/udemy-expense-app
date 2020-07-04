@@ -12,7 +12,7 @@ export const addExpense = (expense) => {
   };
 };
 
-export const startAddExpense = (data = {}) => {
+export const addExpenseAsync = (data = {}) => {
   return (dispatch) => {
     const { amount = 0, createdOn = 0, description = "", note = "" } = data;
     const expense = { amount, createdOn, description, note };
@@ -36,6 +36,8 @@ export const removeExpense = ({ id } = {}) => {
     type: "REMOVE_EXPENSE",
   };
 };
+
+export const removeExpenseAsync = () => {};
 
 export const editExpense = (id, updates) => {
   return {
