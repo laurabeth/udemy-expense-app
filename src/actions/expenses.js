@@ -16,7 +16,7 @@ export const addExpenseAsync = (data = {}) => {
   return (dispatch) => {
     const { amount = 0, createdOn = 0, description = "", note = "" } = data;
     const expense = { amount, createdOn, description, note };
-    database
+    return database
       .ref("expenses")
       .push(expense)
       .then((ref) => {
