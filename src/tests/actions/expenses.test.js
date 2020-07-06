@@ -56,7 +56,7 @@ describe("add expense tests", () => {
     });
   });
 
-  it.only("should add expense with defaults store", async (done) => {
+  it("should add expense with defaults store", async (done) => {
     const mockStore = getMockStore({});
     mockStore.dispatch(addExpenseAsync()).then(() => {
       const actions = mockStore.getActions();
