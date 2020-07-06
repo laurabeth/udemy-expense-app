@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 import { addExpense, editExpense, removeExpense } from "../../actions";
-import moment from "moment";
 import expenses from "../fixtures/expenses";
 
 describe("remove expense tests", () => {
