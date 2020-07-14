@@ -16,17 +16,13 @@ export const addExpenseAsync = (data = {}) => {
   return (dispatch) => {
     const { amount = 0, createdOn = 0, description = "", note = "" } = data;
     const expense = { amount, createdOn, description, note };
-    return database
-      .ref("expenses")
-      .push(expense)
-      .then((ref) => {
-        dispatch(
-          addExpense({
-            id: ref.key,
-            ...expense,
-          }),
-        );
-      });
+    const ref = database.ref("expenses").push(expense);
+    dispatch(
+      addExpense({
+        id: ref.key,
+        ...expense,
+      }),
+    );
   };
 };
 
@@ -44,5 +40,28 @@ export const editExpense = (id, updates) => {
     id,
     type: "EDIT_EXPENSE",
     updates,
+  };
+};
+
+export const setExpenses = (expenses) => ({
+  expenses,
+  type: "SET_EXPENSES",
+});
+
+export const setExpensesAsync = () => {
+  return (dispatch) => {
+    const expenses = [];
+    return database
+      .ref("expenses")
+      .once("value")
+      .then((snapshot) => {
+        snapshot.forEach((child) => {
+          expenses.push({
+            id: child.key,
+            ...child.val(),
+          });
+        });
+        dispatch(setExpenses(expenses));
+      });
   };
 };
