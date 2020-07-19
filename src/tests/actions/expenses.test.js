@@ -7,6 +7,7 @@ import {
   editExpense,
   removeExpense,
   setExpenses,
+  setExpensesAsync,
 } from "../../actions";
 import expenses from "../fixtures/expenses";
 import database from "../../firebase/firebase";
@@ -90,12 +91,26 @@ describe("add expense tests", () => {
       done();
     });
   });
+});
 
+describe("set expenses", () => {
   it("should set up set expense action object with data", () => {
     const action = setExpenses(expenses);
     expect(action).toEqual({
       expenses,
       type: "SET_EXPENSES",
+    });
+  });
+
+  it("should fetch the expenses from firebase", (done) => {
+    const store = getMockStore({});
+    store.dispatch(setExpensesAsync()).then(() => {
+      const actions = store.getActions();
+      expect(actions[0]).toEqual({
+        expenses,
+        type: "SET_EXPENSES",
+      });
+      done();
     });
   });
 });
