@@ -33,13 +33,33 @@ export const removeExpense = ({ id } = {}) => {
   };
 };
 
-export const removeExpenseAsync = () => {};
+export const removeExpenseAsync = ({ id }) => {
+  return (dispatch) => {
+    return database
+      .ref("expenses")
+      .child(id)
+      .remove()
+      .then(() => {
+        dispatch(removeExpense({ id }));
+      });
+  };
+};
 
 export const editExpense = (id, updates) => {
   return {
     id,
     type: "EDIT_EXPENSE",
     updates,
+  };
+};
+
+export const editExpenseAsync = (id, updates) => {
+  return (dispatch) => {
+    return database
+      .ref("expenses")
+      .child(id)
+      .set({ ...updates })
+      .then(dispatch(editExpense(id, updates)));
   };
 };
 
