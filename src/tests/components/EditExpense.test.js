@@ -4,14 +4,14 @@ import { shallow } from "enzyme";
 import { EditExpense } from "../../components/EditExpense";
 import expenses from "../fixtures/expenses";
 
-let editExpense, history, removeExpense, wrapper;
+let editExpenseAsyncMock, history, removeExpense, wrapper;
 beforeEach(() => {
-  editExpense = jest.fn();
+  editExpenseAsyncMock = jest.fn();
   removeExpense = jest.fn();
   history = { push: jest.fn() };
   wrapper = shallow(
     <EditExpense
-      editExpense={editExpense}
+      editExpenseAsync={editExpenseAsyncMock}
       expense={expenses[2]}
       history={history}
       removeExpenseAsync={removeExpense}
@@ -28,7 +28,7 @@ describe("edit expense", () => {
     const edits = { note: "test note" };
     wrapper.find("ExpenseForm").prop("submitExpense")(edits);
     expect(history.push).toHaveBeenLastCalledWith("/");
-    expect(editExpense).toHaveBeenLastCalledWith(expenses[2].id, edits);
+    expect(editExpenseAsyncMock).toHaveBeenLastCalledWith(expenses[2].id, edits);
   });
 
   it("handles remove expense", () => {

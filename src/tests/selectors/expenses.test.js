@@ -39,12 +39,12 @@ describe("expenses selector tests", () => {
 
   it("should sort by date ascending", () => {
     const result = getVisibleExpenses(expenses, filters({ sortBy: "date_asc" }));
-    expect(result).toEqual([expenses[1], expenses[0], expenses[2]]);
+    expect(result).toEqual([expenses[2], expenses[1], expenses[0]]);
   });
 
   it("should sort by date descending", () => {
     const result = getVisibleExpenses(expenses, filters({ sortBy: "date_desc" }));
-    expect(result).toEqual([expenses[2], expenses[0], expenses[1]]);
+    expect(result).toEqual([expenses[0], expenses[1], expenses[2]]);
   });
 
   it("should sort by amount ascending", () => {

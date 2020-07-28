@@ -5,7 +5,7 @@ exports[`expense list renders with data 1`] = `
   <div>
     <ExpenseListItem
       amount={50}
-      createdOn={"1970-01-01T00:00:00.000Z"}
+      createdOn="Wed Dec 31 1969 19:00:00 GMT-0500"
       description="gum"
       id="1"
       key="1"
@@ -13,7 +13,7 @@ exports[`expense list renders with data 1`] = `
     />
     <ExpenseListItem
       amount={485}
-      createdOn={"1969-12-31T00:00:00.000Z"}
+      createdOn="Tue Dec 30 1969 19:00:00 GMT-0500"
       description="green rock candy"
       id="2"
       key="2"
@@ -21,7 +21,7 @@ exports[`expense list renders with data 1`] = `
     />
     <ExpenseListItem
       amount={800}
-      createdOn={"1970-01-02T00:00:00.000Z"}
+      createdOn="Thu Jan 01 1970 19:00:00 GMT-0500"
       description="chocolate"
       id="3"
       key="3"
