@@ -6,7 +6,7 @@ exports[`edit expense renders 1`] = `
     expense={
       Object {
         "amount": 800,
-        "createdOn": "1970-01-02T00:00:00.000Z",
+        "createdOn": "Thu Jan 01 1970 19:00:00 GMT-0500",
         "description": "chocolate",
         "id": "3",
         "note": "",
