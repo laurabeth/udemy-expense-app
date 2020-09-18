@@ -1,7 +1,9 @@
 import React from "react";
+import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { deauthenticateAsync } from "../actions/auth";
 
-const Header = () => (
+export const Header = ({ deauthenticateAsync }) => (
   <header>
     <h1>Expenses</h1>
     <NavLink activeClassName="is-active" exact to="/">
@@ -11,7 +13,12 @@ const Header = () => (
     <NavLink activeClassName="is-active" to="/create">
       Create Expense
     </NavLink>
+    <button onClick={deauthenticateAsync}>Log out</button>
   </header>
 );
 
-export default Header;
+const mapDispatchToProps = (dispatch) => ({
+  deauthenticateAsync: () => dispatch(deauthenticateAsync()),
+});
+
+export default connect(undefined, mapDispatchToProps)(Header);

@@ -3,7 +3,6 @@ import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import {
   addExpense,
-  addExpenseAsync,
   editExpense,
   removeExpense,
   setExpenses,
@@ -76,43 +75,44 @@ describe("add expense tests", () => {
   //   });
   // });
 
-//   it("should add expense with defaults to store", async (done) => {
-//     const mockStore = getMockStore({});
-//     mockStore.dispatch(addExpenseAsync()).then(() => {
-//       const actions = mockStore.getActions();
-//       expect(actions[0]).toEqual({
-//         expense: {
-//           amount: 0,
-//           createdOn: 0,
-//           description: "",
-//           id: expect.any(String),
-//           note: "",
-//         },
-//         type: "ADD_EXPENSE",
-//       });
-//       done();
-//     });
-//   });
-// });
+  //   it("should add expense with defaults to store", async (done) => {
+  //     const mockStore = getMockStore({});
+  //     mockStore.dispatch(addExpenseAsync()).then(() => {
+  //       const actions = mockStore.getActions();
+  //       expect(actions[0]).toEqual({
+  //         expense: {
+  //           amount: 0,
+  //           createdOn: 0,
+  //           description: "",
+  //           id: expect.any(String),
+  //           note: "",
+  //         },
+  //         type: "ADD_EXPENSE",
+  //       });
+  //       done();
+  //     });
+  //   });
+  // });
 
-describe("set expenses", () => {
-  it("should set up set expense action object with data", () => {
-    const action = setExpenses(expenses);
-    expect(action).toEqual({
-      expenses,
-      type: "SET_EXPENSES",
-    });
-  });
-
-  it("should fetch the expenses from firebase", (done) => {
-    const store = getMockStore({});
-    store.dispatch(setExpensesAsync()).then(() => {
-      const actions = store.getActions();
-      expect(actions[0]).toEqual({
+  describe("set expenses", () => {
+    it("should set up set expense action object with data", () => {
+      const action = setExpenses(expenses);
+      expect(action).toEqual({
         expenses,
         type: "SET_EXPENSES",
       });
-      done();
+    });
+
+    it("should fetch the expenses from firebase", (done) => {
+      const store = getMockStore({});
+      store.dispatch(setExpensesAsync()).then(() => {
+        const actions = store.getActions();
+        expect(actions[0]).toEqual({
+          expenses,
+          type: "SET_EXPENSES",
+        });
+        done();
+      });
     });
   });
 });

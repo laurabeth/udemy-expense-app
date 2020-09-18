@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import { setExpensesAsync } from "./actions/expenses";
 import AppRouter from "./routes/AppRouter";
 import useStore from "./store";
-import "./firebase/firebase";
+import { firebase } from "./firebase/firebase";
 
 const store = useStore();
 
@@ -22,4 +22,12 @@ ReactDOM.render(<p>Loading expense app...</p>, document.getElementById("app"));
 store.dispatch(setExpensesAsync()).then(() => {
   // eslint-disable-next-line no-undef
   ReactDOM.render(jsx, document.getElementById("app"));
+});
+
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    console.log("logged in");
+  } else {
+    console.log("logged out");
+  }
 });
